@@ -34,8 +34,31 @@ function initializeLiffOrDie(myLiffId) {
         alert('tidak pake id');
     } else {
         alert('masuk idnya');
-        initializeLiff(myLiffId);
 
+        liff
+        .init({
+                liffId:defaultLiffId
+            })
+            .then(() => {
+                // start to use LIFF's api
+                initializeApp();
+                alert('inisialisasi liff berhasil');
+            })
+            .catch((err) => {
+              alert('error di inisiasi LIFF');
+            });
+        liff.sendMessages([{
+            'type': 'text',
+            'text': "You've successfully sent a message! Hooray!"
+        }]).then(function() {
+            window.alert('Message sent');
+            alert('message berhasil');
+        }).catch(function(error) {
+            alert('message error');
+            window.alert('Error sending message: ' + error);
+        });
+  //      initializeLiff(myLiffId);
+        alert('tidak diapa2in');
     }
 }
 
@@ -44,12 +67,14 @@ function initializeLiffOrDie(myLiffId) {
 * @param {string} myLiffId The LIFF ID of the selected element
 */
 function initializeLiff(myLiffId) {
-    liff.init({
+    liff
+    .init({
             liffId: myLiffId
         })
         .then(() => {
             // start to use LIFF's api
             initializeApp();
+            alert('inisialisasi liff berhasil');
         })
         .catch((err) => {
           alert('error di inisiasi LIFF');
@@ -62,7 +87,8 @@ function initializeLiff(myLiffId) {
 function initializeApp() {
     // check if the user is logged in/out, and disable inappropriate button
     if (liff.isLoggedIn()) {
-      ketrigger()
+      alert('sudah login');
+      ketrigger();
     } else {
         alert('error inisiasi APP');
     }
