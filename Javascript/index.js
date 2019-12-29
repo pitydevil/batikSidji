@@ -1,4 +1,4 @@
-
+/*jshint esversion: 6 */
 
 window.onload = function() {
   alert('new ');
@@ -34,31 +34,7 @@ function initializeLiffOrDie(myLiffId) {
         alert('tidak pake id');
     } else {
         alert('masuk idnya');
-
-        liff.init({
-                liffId: "1653715977-2oYaypJa"
-            })
-            .then(() => {
-              liff.getOS();
-                // start to use LIFF's api
-                initializeApp();
-                alert('inisialisasi liff berhasil');
-            })
-            .catch((err) => {
-              alert('error di inisiasi LIFF');
-            });
-            
-        liff.sendMessages([{
-            'type': 'text',
-            'text': "You've successfully sent a message! Hooray!"
-        }]).then(function() {
-            window.alert('Message sent');
-            alert('message berhasil');
-        }).catch(function(error) {
-            alert('message error');
-            window.alert('Error sending message: ' + error);
-        });
-  //      initializeLiff(myLiffId);
+        initializeLiff(myLiffId);
 
     }
 }
@@ -68,14 +44,12 @@ function initializeLiffOrDie(myLiffId) {
 * @param {string} myLiffId The LIFF ID of the selected element
 */
 function initializeLiff(myLiffId) {
-    liff
-    .init({
+    liff.init({
             liffId: myLiffId
         })
         .then(() => {
             // start to use LIFF's api
             initializeApp();
-            alert('inisialisasi liff berhasil');
         })
         .catch((err) => {
           alert('error di inisiasi LIFF');
@@ -88,8 +62,7 @@ function initializeLiff(myLiffId) {
 function initializeApp() {
     // check if the user is logged in/out, and disable inappropriate button
     if (liff.isLoggedIn()) {
-      alert('sudah login');
-      ketrigger();
+      alert('sudah masuk');
     } else {
         alert('error inisiasi APP');
     }
@@ -101,7 +74,7 @@ function ketrigger() {
             sendAlertIfNotInClient();
             alert('tidak di client');
         } else {
-          alert('dalam client');
+              alert('dalam client');
           liff.sendMessages([{
               'type': 'text',
               'text': "You've successfully sent a message! Hooray!"
