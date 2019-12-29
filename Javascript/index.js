@@ -1,10 +1,10 @@
-function myFunction() {
-    alert("hello");
-}
+
 
 window.onload = function() {
-    const useNodeJS = true;   // if you are not using a node server, set this value to false
-    const defaultLiffId = "";   // change the default LIFF value if you are not using a node server
+  alert('new ');
+
+    const useNodeJS = false;   // if you are not using a node server, set this value to false
+    const defaultLiffId = "1653715977-2oYaypJa";   // change the default LIFF value if you are not using a node server
 
     // DO NOT CHANGE THIS
     let myLiffId = "";
@@ -21,19 +21,90 @@ window.onload = function() {
                 initializeLiffOrDie(myLiffId);
             })
             .catch(function(error) {
-                document.getElementById("liffAppContent").classList.add('hidden');
-                document.getElementById("nodeLiffIdErrorMessage").classList.remove('hidden');
+              alert('json error');
             });
     } else {
         myLiffId = defaultLiffId;
         initializeLiffOrDie(myLiffId);
     }
 };
+
 function initializeLiffOrDie(myLiffId) {
     if (!myLiffId) {
-        document.getElementById("liffAppContent").classList.add('hidden');
-        document.getElementById("liffIdErrorMessage").classList.remove('hidden');
+        alert('tidak pake id');
     } else {
+        alert('masuk idnya');
         initializeLiff(myLiffId);
+
     }
+}
+
+/**
+* Check if myLiffId is null. If null do not initiate liff.
+* @param {string} myLiffId The LIFF ID of the selected element
+*/
+
+function initializeLiff(myLiffId) {
+    liff
+        .init({
+            liffId: myLiffId
+        })
+        .then(() => {
+            // start to use LIFF's api
+            initializeApp();
+        })
+        .catch((err) => {
+          alert('error di inisiasi LIFF');
+        });
+}
+
+/**
+ * Initialize the app by calling functions handling individual app components
+ */
+function initializeApp() {
+    registerButtonHandlers();
+    // check if the user is logged in/out, and disable inappropriate button
+    if (liff.isLoggedIn()) {
+      alert('sudah masuk');
+    } else {
+        alert('error inisiasi APP');
+    }
+}
+
+function ketrigger() {
+        alert('berhasil');
+        liff.sendMessages([{
+            'type': 'text',
+            'text': "You've successfully sent a message! Hooray!"
+
+        }]).then(function() {
+            window.alert('Message sent');
+        }).catch(function(error) {
+            window.alert('Error sending message: ' + error);
+        });
+}
+
+function registerButtonHandlers() {
+  document.getElementByID('lineButton').addEventListener('click', function() {
+
+    alert('dsfas') ;
+      if (!liff.isInClient()) {
+          sendAlertIfNotInClient();
+      } else {
+          alert('berhasil');
+          liff.sendMessages([{
+              'type': 'text',
+              'text': "You've successfully sent a message! Hooray!"
+
+          }]).then(function() {
+              window.alert('Message sent');
+          }).catch(function(error) {
+              window.alert('Error sending message: ' + error);
+          });
+      }
+  });
+}
+
+function sendAlertIfNotInClient() {
+    alert('This button is unavailable as LIFF is currently being opened in an external browser.');
 }
