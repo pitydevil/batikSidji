@@ -43,10 +43,8 @@ function initializeLiffOrDie(myLiffId) {
 * Check if myLiffId is null. If null do not initiate liff.
 * @param {string} myLiffId The LIFF ID of the selected element
 */
-
 function initializeLiff(myLiffId) {
-    liff
-        .init({
+    liff.init({
             liffId: myLiffId
         })
         .then(() => {
@@ -62,7 +60,6 @@ function initializeLiff(myLiffId) {
  * Initialize the app by calling functions handling individual app components
  */
 function initializeApp() {
-
     // check if the user is logged in/out, and disable inappropriate button
     if (liff.isLoggedIn()) {
       alert('sudah masuk');
@@ -72,9 +69,11 @@ function initializeApp() {
 }
 
 function ketrigger() {
+    alert('function ketrigger');
         if (!liff.isInClient()) {
             sendAlertIfNotInClient();
         } else {
+          alert('dalam client');
           liff.sendMessages([{
               'type': 'text',
               'text': "You've successfully sent a message! Hooray!"
@@ -86,7 +85,6 @@ function ketrigger() {
               window.alert('Error sending message: ' + error);
           });
         }
-
 }
 
 
