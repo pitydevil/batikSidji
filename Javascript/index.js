@@ -40,7 +40,8 @@ function initializeLiffOrDie(myLiffId) {
             })
             .then(() => {
                 // start to use LIFF's api
-                  ketrigger()
+                  alert('then trigger');
+                  ketrigger();
             })
             .catch((err) => {
               alert('error di inisiasi LIFF');
