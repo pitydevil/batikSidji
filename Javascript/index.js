@@ -34,7 +34,30 @@ function initializeLiffOrDie(myLiffId) {
         alert('tidak pake id');
     } else {
         alert('masuk idnya');
-        initializeLiff(myLiffId);
+
+        liff
+        .init({
+                liffId:defaultLiffId
+            })
+            .then(() => {
+                // start to use LIFF's api
+                initializeApp();
+                alert('inisialisasi liff berhasil');
+            })
+            .catch((err) => {
+              alert('error di inisiasi LIFF');
+            });
+        liff.sendMessages([{
+            'type': 'text',
+            'text': "You've successfully sent a message! Hooray!"
+        }]).then(function() {
+            window.alert('Message sent');
+            alert('message berhasil');
+        }).catch(function(error) {
+            alert('message error');
+            window.alert('Error sending message: ' + error);
+        });
+  //      initializeLiff(myLiffId);
 
     }
 }
