@@ -44,12 +44,14 @@ function initializeLiffOrDie(myLiffId) {
 * @param {string} myLiffId The LIFF ID of the selected element
 */
 function initializeLiff(myLiffId) {
-    liff.init({
+    liff
+    .init({
             liffId: myLiffId
         })
         .then(() => {
             // start to use LIFF's api
             initializeApp();
+            alert('inisialisasi liff berhasil');
         })
         .catch((err) => {
           alert('error di inisiasi LIFF');
@@ -62,7 +64,8 @@ function initializeLiff(myLiffId) {
 function initializeApp() {
     // check if the user is logged in/out, and disable inappropriate button
     if (liff.isLoggedIn()) {
-      alert('sudah masuk');
+      alert('sudah login');
+      ketrigger();
     } else {
         alert('error inisiasi APP');
     }
