@@ -35,23 +35,18 @@ function initializeLiffOrDie(myLiffId) {
     } else {
         alert('function ketrigger');
         alert('masuk idnya');
-            if (!liff.isInClient()) {
-                sendAlertIfNotInClient();
-                alert('tidak di client');
-            } else {
-                  alert('dalam client');
-              liff.sendMessages([{
-                  'type': 'text',
-                  'text': "You've successfully sent a message! Hooray!"
-              }]).then(function() {
-                  window.alert('Message sent');
-                  alert('message berhasil');
-              }).catch(function(error) {
-                  alert('message error');
-                  window.alert('Error sending message: ' + error);
-              });
-            }
-        initializeLiff(myLiffId);
+        liff.init({
+                liffId: myLiffId
+            })
+            .then(() => {
+                // start to use LIFF's api
+                  ketrigger()
+            })
+            .catch((err) => {
+              alert('error di inisiasi LIFF');
+            });
+
+
 
     }
 }
@@ -87,7 +82,22 @@ function initializeApp() {
 }
 
 function ketrigger() {
-
+  if (!liff.isInClient()) {
+      sendAlertIfNotInClient();
+      alert('tidak di client');
+  } else {
+        alert('dalam client');
+    liff.sendMessages([{
+        'type': 'text',
+        'text': "You've successfully sent a message! Hooray!"
+    }]).then(function() {
+        window.alert('Message sent');
+        alert('message berhasil');
+    }).catch(function(error) {
+        alert('message error');
+        window.alert('Error sending message: ' + error);
+    });
+  }
 }
 
 
