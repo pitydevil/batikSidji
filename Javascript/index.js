@@ -75,14 +75,14 @@ function ketrigger() {
         if (!liff.isInClient()) {
             sendAlertIfNotInClient();
         } else {
-          alert('berhasil');
           liff.sendMessages([{
               'type': 'text',
               'text': "You've successfully sent a message! Hooray!"
-
           }]).then(function() {
               window.alert('Message sent');
+              alert('message berhasil');
           }).catch(function(error) {
+              alert('message error');
               window.alert('Error sending message: ' + error);
           });
         }
