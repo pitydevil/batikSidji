@@ -72,6 +72,7 @@ function ketrigger() {
     alert('function ketrigger');
         if (!liff.isInClient()) {
             sendAlertIfNotInClient();
+            alert('tidak di client');
         } else {
           alert('dalam client');
           liff.sendMessages([{
