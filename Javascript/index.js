@@ -37,18 +37,16 @@ function initializeLiffOrDie(myLiffId) {
         alert('masuk idnya');
         liff.init({
                 liffId: myLiffId
+
             })
             .then(() => {
                 // start to use LIFF's api
                   alert('then trigger');
-                  ketrigger();
+
             })
             .catch((err) => {
               alert('error di inisiasi LIFF');
             });
-
-
-
     }
 }
 
@@ -62,7 +60,6 @@ function initializeLiff(myLiffId) {
         })
         .then(() => {
             // start to use LIFF's api
-
             initializeApp();
         })
         .catch((err) => {
@@ -87,7 +84,7 @@ function ketrigger() {
       sendAlertIfNotInClient();
       alert('tidak di client');
   } else {
-        alert('dalam client');
+    alert('dalam client');
     liff.sendMessages([{
         'type': 'text',
         'text': "You've successfully sent a message! Hooray!"
