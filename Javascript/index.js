@@ -67,7 +67,7 @@ function keyboardObserver() {
       } else {
         liff.sendMessages([{
             'type': 'text',
-            'text': "You've successfully sent a message! Hooray!"
+            'text': "Get Your Awesome Batik at BatikSidji, Go ahead contact us at mikhael_adiputra@yahoo.com"
         }]).then(function() {
             window.alert('Message sent');
         }).catch(function(error) {
