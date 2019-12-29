@@ -35,18 +35,7 @@ function initializeLiffOrDie(myLiffId) {
     } else {
         alert('function ketrigger');
         alert('masuk idnya');
-        liff.init({
-                liffId: myLiffId
-
-            })
-            .then(() => {
-                // start to use LIFF's api
-                  alert('then trigger');
-
-            })
-            .catch((err) => {
-              alert('error di inisiasi LIFF');
-            });
+        initializeLiff(myLiffId);
     }
 }
 
