@@ -72,16 +72,21 @@ function initializeApp() {
 }
 
 function ketrigger() {
-        alert('berhasil');
-        liff.sendMessages([{
-            'type': 'text',
-            'text': "You've successfully sent a message! Hooray!"
+        if (!liff.isInClient()) {
+            sendAlertIfNotInClient();
+        } else {
+          alert('berhasil');
+          liff.sendMessages([{
+              'type': 'text',
+              'text': "You've successfully sent a message! Hooray!"
 
-        }]).then(function() {
-            window.alert('Message sent');
-        }).catch(function(error) {
-            window.alert('Error sending message: ' + error);
-        });
+          }]).then(function() {
+              window.alert('Message sent');
+          }).catch(function(error) {
+              window.alert('Error sending message: ' + error);
+          });
+        }
+
 }
 
 function registerButtonHandlers() {
