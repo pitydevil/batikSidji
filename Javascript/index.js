@@ -62,7 +62,7 @@ function initializeLiff(myLiffId) {
  * Initialize the app by calling functions handling individual app components
  */
 function initializeApp() {
-    registerButtonHandlers();
+
     // check if the user is logged in/out, and disable inappropriate button
     if (liff.isLoggedIn()) {
       alert('sudah masuk');
@@ -89,26 +89,6 @@ function ketrigger() {
 
 }
 
-function registerButtonHandlers() {
-  document.getElementByID('lineButton').addEventListener('click', function() {
-
-    alert('dsfas') ;
-      if (!liff.isInClient()) {
-          sendAlertIfNotInClient();
-      } else {
-          alert('berhasil');
-          liff.sendMessages([{
-              'type': 'text',
-              'text': "You've successfully sent a message! Hooray!"
-
-          }]).then(function() {
-              window.alert('Message sent');
-          }).catch(function(error) {
-              window.alert('Error sending message: ' + error);
-          });
-      }
-  });
-}
 
 function sendAlertIfNotInClient() {
     alert('This button is unavailable as LIFF is currently being opened in an external browser.');
