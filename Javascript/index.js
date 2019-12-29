@@ -33,8 +33,8 @@ function initializeLiffOrDie(myLiffId) {
     if (!myLiffId) {
         alert('tidak pake id');
     } else {
-        alert('masuk idnya');
         alert('function ketrigger');
+        alert('masuk idnya');
             if (!liff.isInClient()) {
                 sendAlertIfNotInClient();
                 alert('tidak di client');
