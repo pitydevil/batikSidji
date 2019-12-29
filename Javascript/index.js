@@ -35,7 +35,7 @@ function initializeLiffOrDie(myLiffId) {
     } else {
         alert('function ketrigger');
         alert('masuk idnya');
-        initializeLiff(myLiffId);
+          initializeLiff(myLiffId);
     }
 }
 
@@ -63,28 +63,49 @@ function initializeApp() {
     // check if the user is logged in/out, and disable inappropriate button
     if (liff.isLoggedIn()) {
       alert('sudah masuk');
+      keyboardObserver()
     } else {
         alert('error inisiasi APP');
     }
 }
 
-function ketrigger() {
-  if (!liff.isInClient()) {
-      sendAlertIfNotInClient();
-      alert('tidak di client');
-  } else {
-    alert('dalam client');
-    liff.sendMessages([{
-        'type': 'text',
-        'text': "You've successfully sent a message! Hooray!"
-    }]).then(function() {
-        window.alert('Message sent');
-        alert('message berhasil');
-    }).catch(function(error) {
-        alert('message error');
-        window.alert('Error sending message: ' + error);
-    });
-  }
+// function ketrigger() {
+//   if (!liff.isInClient()) {
+//       sendAlertIfNotInClient();
+//       alert('tidak di client');
+//   } else {
+//     alert('dalam client');
+//     liff.sendMessages([{
+//         'type': 'text',
+//         'text': "You've successfully sent a message! Hooray!"
+//     }]).then(function() {
+//         window.alert('Message sent');
+//         alert('message berhasil');
+//     }).catch(function(error) {
+//         alert('message error');
+//         window.alert('Error sending message: ' + error);
+//     });
+//   }
+// }
+
+function keyboardObserver() {
+  document.getElementById('lineButton').addEventListener('click', function() {
+      if (!liff.isInClient()) {
+          sendAlertIfNotInClient();
+      } else {
+        alert('dalam client');
+        liff.sendMessages([{
+            'type': 'text',
+            'text': "You've successfully sent a message! Hooray!"
+        }]).then(function() {
+            window.alert('Message sent');
+            alert('message berhasil');
+        }).catch(function(error) {
+            alert('message error');
+            window.alert('Error sending message: ' + error);
+        });
+      }
+  });
 }
 
 
